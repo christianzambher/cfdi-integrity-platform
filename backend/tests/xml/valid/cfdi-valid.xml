@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cfdi:Comprobante
+    xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+    xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+    Version="4.0"
+    Fecha="2025-12-12T12:32:30"
+    Total="8585.36">
+
+    <cfdi:Emisor Rfc="SBM090813PP4" />
+
+    <cfdi:Receptor Rfc="AAA010101AAA" />
+
+    <cfdi:Complemento>
+
+        <tfd:TimbreFiscalDigital
+            UUID="EEF34D92-B636-414A-8AC1-57CFF33AB345" />
+
+    </cfdi:Complemento>
+
+</cfdi:Comprobante>

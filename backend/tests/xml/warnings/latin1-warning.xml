@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<cfdi:Comprobante
+    xmlns:cfdi="http://www.sat.gob.mx/cfd/4">
+
+    <cfdi:Emisor Nombre="Compañía Ñandú" />
+
+</cfdi:Comprobante>

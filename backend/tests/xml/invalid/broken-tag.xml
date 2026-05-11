@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cfdi:Comprobante
+    xmlns:cfdi="http://www.sat.gob.mx/cfd/4">
+
+    <cfdi:Emisor Rfc="AAA010101AAA">
+
+</cfdi:Comprobante>
