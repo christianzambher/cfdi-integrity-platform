@@ -41,49 +41,54 @@ const uploadXml = async (event) => {
 </script>
 
 <template>
-    <main>
-        <h1>CFDI Integrity Platform</h1>
+    <main class="min-h-screen bg-gray-100 p-10">
+        <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8">
+            <h1 class="text-4xl font-bold mb-6 text-gray-800">CFDI Integrity Platform</h1>
 
-        <input type="file" accept=".xml" @change="uploadXml">
+            <input type="file" accept=".xml" @change="uploadXml"
+                class="mb-6 block w-full border border-gray-300 rounded-lg p-3">
 
-        <p v-if="loading">Processing XML...</p>
+            <p v-if="loading" class="text-blue-600 font-semibold">Processing XML...</p>
 
-        <div v-if="result">
-            <h2>Status : {{ result.valid ? 'Valid XML' : 'Invalid XML' }}</h2>
+            <div v-if="result" class="mt-6">
+                <div class="p-4 rounded-lg mb-6" :class="result.valid
+                    ? 'bg-green-100 text-green-800'
+                    : 'bg-red-100 text-red-800'">
+                    <h2 class="text-2xl font-bold">Status : {{ result.valid ? 'Valid XML' : 'Invalid XML' }}</h2>
+                </div>
+                <div v-if="result.metadata" class="bg-gray-50 border rounded-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4">CFDI Metadata</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <strong>Version:</strong> {{ result.metadata.version }}
+                        </li>
+                        <li>
+                            <strong>UUID:</strong> {{ result.metadata.uuid }}
+                        </li>
+                        <li>
+                            <strong>Emisor RFC:</strong> {{ result.metadata.emisor }}
+                        </li>
+                        <li>
+                            <strong>Receptor RFC:</strong> {{ result.metadata.receptor }}
+                        </li>
+                        <li>
+                            <strong>Total:</strong> {{ result.metadata.total }}
+                        </li>
+                        <li>
+                            <strong>Fecha:</strong> {{ result.metadata.fecha }}
+                        </li>
+                    </ul>
+                </div>
 
-            <div v-if="result.metadata">
-                <h3>CFDI Metadata</h3>
-                <ul>
-                    <li>
-                        Version: {{ result.metadata.version }}
-                    </li>
-                    <li>
-                        UUID: {{ result.metadata.uuid }}
-                    </li>
-                    <li>
-                        Emisor RFC: {{ result.metadata.emisor }}
-                    </li>
-                    <li>
-                        Receptor RFC: {{ result.metadata.receptor }}
-                    </li>
-                    <li>
-                        Total: {{ result.metadata.total }}
-                    </li>
-                    <li>
-                        Fecha: {{ result.metadata.fecha }}
-                    </li>
-                </ul>
-            </div>
-
-            <div v-if="result.errors.length">
-                <h3>Errors:</h3>
-
-                <ul>
-                    <li v-for="(error, index) in result.errors" :key="index">
-                        {{ error.message }}
-                        <span v-if="error.line">- Line {{ error.line }}</span>
-                    </li>
-                </ul>
+                <div v-if="result.errors.length" class="mt-6 bg-red-50 border border-red-200 rounded-lg p-6">
+                    <h3 class="text-xl font-semibold text-red-700 mb-4">Errors:</h3>
+                    <ul class="space-y-2">
+                        <li v-for="(error, index) in result.errors" :key="index" class="text-red-600">
+                            {{ error.message }}
+                            <span v-if="error.line">- Line {{ error.line }}</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </main>
