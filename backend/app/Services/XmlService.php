@@ -2,10 +2,18 @@
 
 namespace App\Services;
 
+use App\Libraries\XmlSanitizer;
+
 class XmlService
 {
     public function analyze(string $content): array
     {
+        $sanitizer = new XmlSanitizer();
+
+        $content = $sanitizer->sanitize($content);
+
+        $warnings = $sanitizer->getWarnings();
+
         libxml_use_internal_errors(true);
 
         $xml = simplexml_load_string($content);
@@ -21,7 +29,8 @@ class XmlService
 
             return [
                 'valid' => false,
-                'errors' => $errors
+                'errors' => $errors,
+                'warnings' => $warnings,
             ];
         }
 
@@ -73,7 +82,8 @@ class XmlService
         return [
             'valid' => true,
             'errors' => [],
-            'metadata' => $metadata
+            'warnings' => $warnings,
+            'metadata' => $metadata,
         ];
     }
 }

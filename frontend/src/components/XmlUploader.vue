@@ -23,6 +23,7 @@ const uploadXml = async (event) => {
                 }
             }
         )
+        console.log(response)
 
         result.value = response.data
     } catch (error) {
@@ -76,6 +77,19 @@ const uploadXml = async (event) => {
                         </li>
                         <li>
                             <strong>Fecha:</strong> {{ result.metadata.fecha }}
+                        </li>
+                    </ul>
+                </div>
+
+                <div v-if="result.warnings && result.warnings.length"
+                    class="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                    <h3 class="text-xl font-semibold text-yellow-700 mb-4">
+                        Warnings
+                    </h3>
+
+                    <ul class="space-y-2">
+                        <li v-for="(warning, index) in result.warnings" :key="index" class="text-yellow-700">
+                            {{ warning }}
                         </li>
                     </ul>
                 </div>
