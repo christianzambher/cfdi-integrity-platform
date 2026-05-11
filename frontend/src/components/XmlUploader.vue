@@ -57,6 +57,7 @@ const uploadXml = async (event) => {
                     : 'bg-red-100 text-red-800'">
                     <h2 class="text-2xl font-bold">Status : {{ result.valid ? 'Valid XML' : 'Invalid XML' }}</h2>
                 </div>
+
                 <div v-if="result.metadata" class="bg-gray-50 border rounded-lg p-6">
                     <h3 class="text-xl font-semibold mb-4">CFDI Metadata</h3>
                     <ul class="space-y-2">
@@ -77,6 +78,32 @@ const uploadXml = async (event) => {
                         </li>
                         <li>
                             <strong>Fecha:</strong> {{ result.metadata.fecha }}
+                        </li>
+                    </ul>
+                </div>
+
+                <div v-if="result.xsd_validation" class="mt-6 border rounded-lg p-6" :class="result.xsd_validation.valid
+                    ? 'bg-green-50 border-green-200'
+                    : 'bg-red-50 border-red-200'">
+
+                    <h3 class="text-xl font-semibold mb-4">
+                        SAT XSD Validation
+                    </h3>
+
+                    <p :class="result.xsd_validation.valid
+                        ? 'text-green-700'
+                        : 'text-red-700'">
+                        {{
+                            result.xsd_validation.valid
+                                ? 'CFDI structure is SAT compliant'
+                        : 'CFDI structure is invalid'
+                        }}
+                    </p>
+
+                    <ul v-if="!result.xsd_validation.valid && result.xsd_validation.errors.length" class="space-y-2">
+                        <li v-for="(error, index) in result.xsd_validation.errors" :key="index">
+                            {{ error.message }}
+                            <span v-if="error.line">- Line {{ error.line }}</span>
                         </li>
                     </ul>
                 </div>

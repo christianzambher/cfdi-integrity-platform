@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Libraries\XmlSanitizer;
+use App\Libraries\XsdValidator;
 
 class XmlService
 {
@@ -79,11 +80,15 @@ class XmlService
             }
         }
 
+        $xsdValidator = new XsdValidator();
+        $xsdResult = $xsdValidator->validate($content);
+
         return [
             'valid' => true,
             'errors' => [],
             'warnings' => $warnings,
             'metadata' => $metadata,
+            'xsd_validation' => $xsdResult,
         ];
     }
 }
