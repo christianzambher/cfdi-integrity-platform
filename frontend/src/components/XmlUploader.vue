@@ -7,7 +7,7 @@ const loading = ref(false);
 
 const uploadXml = async (event) => {
     const file = event.target.files[0];
-    if (!file) return;  
+    if (!file) return;
 
     const formData = new FormData();
     formData.append('xmlFile', file);
@@ -19,7 +19,7 @@ const uploadXml = async (event) => {
             formData,
             {
                 headers: {
-                'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data'
                 }
             }
         )
@@ -50,6 +50,30 @@ const uploadXml = async (event) => {
 
         <div v-if="result">
             <h2>Status : {{ result.valid ? 'Valid XML' : 'Invalid XML' }}</h2>
+
+            <div v-if="result.metadata">
+                <h3>CFDI Metadata</h3>
+                <ul>
+                    <li>
+                        Version: {{ result.metadata.version }}
+                    </li>
+                    <li>
+                        UUID: {{ result.metadata.uuid }}
+                    </li>
+                    <li>
+                        Emisor RFC: {{ result.metadata.emisor }}
+                    </li>
+                    <li>
+                        Receptor RFC: {{ result.metadata.receptor }}
+                    </li>
+                    <li>
+                        Total: {{ result.metadata.total }}
+                    </li>
+                    <li>
+                        Fecha: {{ result.metadata.fecha }}
+                    </li>
+                </ul>
+            </div>
 
             <div v-if="result.errors.length">
                 <h3>Errors:</h3>
