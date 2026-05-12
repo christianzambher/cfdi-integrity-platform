@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Libraries\XmlSanitizer;
 use App\Libraries\XsdValidator;
+use App\Libraries\ComplementDetector;
 
 class XmlService
 {
@@ -38,6 +39,10 @@ class XmlService
         $namespaces = $xml->getNamespaces(true);
         $cfdiNamespace = $namespaces['cfdi'] ?? null;
         $tfdNamespace = $namespaces['tfd'] ?? null;
+
+        $detector = new ComplementDetector();
+
+        $detectedComplements = $detector->detect($namespaces);
 
         $metadata = [
             'version' => null,
@@ -89,6 +94,7 @@ class XmlService
             'warnings' => $warnings,
             'metadata' => $metadata,
             'xsd_validation' => $xsdResult,
+            'detected_complements' => $detectedComplements,
         ];
     }
 }

@@ -82,28 +82,17 @@ const uploadXml = async (event) => {
                     </ul>
                 </div>
 
-                <div v-if="result.xsd_validation" class="mt-6 border rounded-lg p-6" :class="result.xsd_validation.valid
-                    ? 'bg-green-50 border-green-200'
-                    : 'bg-red-50 border-red-200'">
+                <div v-if="result.detected_complements?.length"
+                    class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-6">
 
-                    <h3 class="text-xl font-semibold mb-4">
-                        SAT XSD Validation
+                    <h3 class="text-xl font-semibold text-blue-700 mb-4">
+                        Detected Complements
                     </h3>
 
-                    <p :class="result.xsd_validation.valid
-                        ? 'text-green-700'
-                        : 'text-red-700'">
-                        {{
-                            result.xsd_validation.valid
-                                ? 'CFDI structure is SAT compliant'
-                        : 'CFDI structure is invalid'
-                        }}
-                    </p>
-
-                    <ul v-if="!result.xsd_validation.valid && result.xsd_validation.errors.length" class="space-y-2">
-                        <li v-for="(error, index) in result.xsd_validation.errors" :key="index">
-                            {{ error.message }}
-                            <span v-if="error.line">- Line {{ error.line }}</span>
+                    <ul class="space-y-2">
+                        <li v-for="(complement, index) in result.detected_complements" :key="index"
+                            class="text-blue-700">
+                            {{ complement.name }}
                         </li>
                     </ul>
                 </div>
@@ -125,6 +114,32 @@ const uploadXml = async (event) => {
                     <h3 class="text-xl font-semibold text-red-700 mb-4">Errors:</h3>
                     <ul class="space-y-2">
                         <li v-for="(error, index) in result.errors" :key="index" class="text-red-600">
+                            {{ error.message }}
+                            <span v-if="error.line">- Line {{ error.line }}</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div v-if="result.xsd_validation" class="mt-6 border rounded-lg p-6" :class="result.xsd_validation.valid
+                    ? 'bg-green-50 border-green-200'
+                    : 'bg-red-50 border-red-200'">
+
+                    <h3 class="text-xl font-semibold mb-4">
+                        SAT XSD Validation
+                    </h3>
+
+                    <p :class="result.xsd_validation.valid
+                        ? 'text-green-700'
+                        : 'text-red-700'">
+                        {{
+                            result.xsd_validation.valid
+                                ? 'CFDI structure is SAT compliant'
+                                : 'CFDI structure is invalid'
+                        }}
+                    </p>
+
+                    <ul v-if="!result.xsd_validation.valid && result.xsd_validation.errors.length" class="space-y-2">
+                        <li v-for="(error, index) in result.xsd_validation.errors" :key="index">
                             {{ error.message }}
                             <span v-if="error.line">- Line {{ error.line }}</span>
                         </li>
