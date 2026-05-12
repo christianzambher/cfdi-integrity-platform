@@ -1,9 +1,0 @@
-{
-  "$schema": "https://schema.railpack.com",
-  "packages": {
-    "libicu-dev": "latest"
-  },
-  "phpModules": [
-    "intl"
-  ]
-}
