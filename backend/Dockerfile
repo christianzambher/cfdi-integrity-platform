@@ -8,7 +8,6 @@ RUN apt-get update && apt-get install -y \
     git \
     && docker-php-ext-install intl
 
-RUN a2dismod mpm_event
 RUN a2enmod rewrite
 
 WORKDIR /var/www/html
