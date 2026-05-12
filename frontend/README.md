@@ -1,44 +1,97 @@
-# frontend
+# CFDI Integrity Platform - Frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+Frontend application built with Vue 3 and TailwindCSS for CFDI XML upload and validation.
 
-## Recommended IDE Setup
+---
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Responsibilities
 
-## Recommended Browser Setup
+- XML upload UI
+- Validation result visualization
+- Metadata rendering
+- Warning display
+- XSD validation status
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+---
 
-## Customize configuration
+## Technologies
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- Vue 3
+- Vite
+- Axios
+- TailwindCSS
 
-## Project Setup
+---
 
-```sh
+## Setup
+
+Install dependencies:
+
+```bash
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+---
 
-```sh
+## Run development server
+
+```bash
 npm run dev
 ```
 
-### Compile and Minify for Production
+---
 
-```sh
-npm run build
+## Development URL
+
+```text
+http://localhost:5173
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+---
 
-```sh
-npm run lint
+## Current Features
+
+- XML upload
+- Validation feedback
+- CFDI metadata display
+- Warning notifications
+- SAT validation status
+- Responsive UI
+
+---
+
+## Future Improvements
+
+- Drag & drop uploader
+- Upload history
+- Dashboard UI
+- Dark mode
+- CFDI detail views
+- Export reports
+- State management scaling
+
+---
+
+## API Connection
+
+The frontend consumes the backend REST API:
+
+```text
+http://localhost:8080/api
 ```
+
+---
+
+## Main Libraries
+
+### Axios
+
+Used for HTTP requests.
+
+### TailwindCSS
+
+Used for UI styling.
+
+### Vue Composition API
+
+Used for component logic and state management.
