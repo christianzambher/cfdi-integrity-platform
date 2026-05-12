@@ -1,4 +1,4 @@
-FROM php:8.2-apache
+FROM php:8.2-cli
 
 RUN apt-get update && apt-get install -y \
     libicu-dev \
@@ -8,9 +8,7 @@ RUN apt-get update && apt-get install -y \
     git \
     && docker-php-ext-install intl
 
-RUN a2enmod rewrite
-
-WORKDIR /var/www/html
+WORKDIR /app
 
 COPY . .
 
@@ -18,15 +16,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN composer install --no-dev --optimize-autoloader
 
-RUN chown -R www-data:www-data writable
+RUN chmod -R 777 writable
 
-ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
+EXPOSE 8080
 
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
-    /etc/apache2/sites-available/*.conf
-
-RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' \
-    /etc/apache2/apache2.conf \
-    /etc/apache2/conf-available/*.conf
-
-EXPOSE 80
+CMD php spark serve --host=0.0.0.0 --port=8080
