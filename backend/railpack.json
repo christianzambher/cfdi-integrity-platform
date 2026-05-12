@@ -1,0 +1,11 @@
+{
+  "$schema": "https://railpack.com/schema.json",
+  "packages": {
+    "apt": [
+      "libicu-dev"
+    ]
+  },
+  "phpModules": [
+    "intl"
+  ]
+}
