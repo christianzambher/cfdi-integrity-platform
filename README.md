@@ -135,9 +135,9 @@ xmlFile
   "warnings": [],
   "metadata": {
     "version": "4.0",
-    "uuid": "EEF34D92-B636-414A-8AC1-57CFF33AB345",
+    "uuid": "EEF31111-B222-433A-8A44-57CFF335555",
     "emisor": "SBM090813PP4",
-    "receptor": "ZAHC931222FE1",
+    "receptor": "ABCD001122ABC",
     "total": "8585.36",
     "fecha": "2025-12-12T12:32:30"
   },
