@@ -8,17 +8,19 @@ RUN apt-get update && apt-get install -y \
     git \
     && docker-php-ext-install intl
 
+RUN a2dismod mpm_event
+RUN a2enmod mpm_prefork
 RUN a2enmod rewrite
 
 WORKDIR /var/www/html
 
 COPY . .
 
-RUN chown -R www-data:www-data writable
-
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN composer install --no-dev --optimize-autoloader
+
+RUN chown -R www-data:www-data writable
 
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 
