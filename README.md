@@ -6,10 +6,31 @@ The platform detects malformed XML structures, encoding problems, invalid charac
 
 ---
 
+## Live Demo
+
+[![Frontend](https://img.shields.io/badge/Frontend-Vercel-000?style=for-the-badge&logo=vercel)](https://cfdi-integrity-platform.vercel.app)
+
+[![Backend](https://img.shields.io/badge/Backend-Railway-0B0D0E?style=for-the-badge&logo=railway)](https://cfdi-integrity-platform-production.up.railway.app)
+
+---
+
+## Architecture
+
+- Frontend: Vue 3 + Vite + TailwindCSS
+- Backend: CodeIgniter 4 REST API
+- Infrastructure:
+  - Frontend deployed on Vercel
+  - Backend deployed on Railway using Docker
+
+---
+
 ## Features
 - XML upload and processing
 - XML syntax validation
 - XML sanitization
+- CFDI XML validation
+- XSD schema validation
+- SAT metadata extraction
 - UTF-8 BOM detection and removal
 - Encoding normalization
 - Invalid character cleanup
@@ -18,6 +39,11 @@ The platform detects malformed XML structures, encoding problems, invalid charac
 - CFDI complement detection
 - Vue.js frontend
 - CodeIgniter 4 REST API backend
+- Drag & Drop upload
+- Real-time validation results
+- Modular dashboard UI
+- Multi-environment support
+- Dockerized backend deployment
 
 ---
 
