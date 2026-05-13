@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios';
+import API_URL from '@/services/api'
 
 import UploadZone from './UploadZone.vue'
 import ValidationCard from './ValidationCard.vue'
@@ -19,7 +20,7 @@ const uploadXml = async (file) => {
 
     try {
         const response = await axios.post(
-            'http://localhost:8080/api/xml/validate',
+            `${API_URL}/api/xml/validate`,
             formData,
             {
                 headers: {
